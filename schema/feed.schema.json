@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://growilabs.github.io/growi-news-feed/schema/feed.schema.json",
+  "title": "GROWI News Feed",
+  "type": "object",
+  "required": ["version", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version"
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/newsItem" }
+    }
+  },
+  "definitions": {
+    "newsItem": {
+      "type": "object",
+      "required": ["id", "title", "publishedAt"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique identifier. Used as externalId on the GROWI side."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["release", "security", "tips", "maintenance", "announcement"]
+        },
+        "emoji": {
+          "type": "string"
+        },
+        "title": {
+          "type": "object",
+          "required": ["ja_JP"],
+          "patternProperties": {
+            "^[a-z]{2}_[A-Z]{2}$": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        },
+        "body": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-z]{2}_[A-Z]{2}$": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "conditions": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "targetRoles": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["admin", "general"] }
+            },
+            "growiVersionRegExps": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
