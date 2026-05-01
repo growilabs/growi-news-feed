@@ -8,6 +8,7 @@
   "properties": {
     "version": {
       "type": "string",
+      "enum": ["1.0"],
       "description": "Schema version"
     },
     "items": {
