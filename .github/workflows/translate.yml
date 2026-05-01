@@ -9,6 +9,12 @@ permissions:
   contents: write
   pull-requests: write
 
+# Cancel earlier in-flight runs on the same PR to avoid duplicate OpenAI calls
+# when contributors push multiple commits in quick succession.
+concurrency:
+  group: translate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   translate:
     # Skip for PRs from forks (secrets unavailable there)
