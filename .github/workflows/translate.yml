@@ -28,6 +28,11 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: npm run translate
+      # GITHUB_TOKEN-driven pushes do NOT re-trigger workflows, so validate.yml
+      # will not re-run on the bot's translation commit. Validate inline before
+      # pushing to guarantee the spec rule "all locales present after merge".
+      - name: Re-validate after translation
+        run: npm run validate
       - name: Commit and push if changed
         run: |
           if [[ -n "$(git status --porcelain feed.json)" ]]; then
