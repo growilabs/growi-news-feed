@@ -1,0 +1,41 @@
+name: Refresh package-lock.json
+
+# Manual trigger only. Use this:
+# - On first setup to bootstrap package-lock.json before any other workflow runs.
+# - When package.json changes (deps added/removed/bumped) and you want CI-side
+#   lock regeneration without running Node locally.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Default GITHUB_TOKEN is enough for pushing to the same repo.
+          # Note: GITHUB_TOKEN-driven pushes do NOT re-trigger workflows, so
+          # the resulting commit will not loop back into this workflow.
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Generate or refresh lock file
+        # --package-lock-only writes only package-lock.json without populating
+        # node_modules. We don't need the modules on the runner.
+        run: npm install --package-lock-only
+      - name: Commit and push if lock file changed
+        run: |
+          if [[ -n "$(git status --porcelain package-lock.json)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add package-lock.json
+            git commit -m "chore: refresh package-lock.json"
+            git push
+          else
+            echo "package-lock.json is already up to date"
+          fi
