@@ -4,7 +4,7 @@
   "description": "News feed distribution for GROWI InAppNotification",
   "type": "module",
   "scripts": {
-    "validate": "ajv validate -s schema/feed.schema.json -d feed.json -c ajv-formats --all-errors",
+    "validate": "ajv validate -s schema/feed.schema.json -d feed.json -c ajv-formats --all-errors && node scripts/check-uniqueness.mjs",
     "translate": "node scripts/translate.mjs"
   },
   "dependencies": {
