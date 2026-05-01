@@ -22,6 +22,6 @@ jobs:
         with:
           node-version: '20'
       - name: Install dependencies
-        run: npm install --no-save
+        run: npm ci
       - name: Validate feed.json against schema
         run: npm run validate

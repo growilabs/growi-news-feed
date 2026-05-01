@@ -34,7 +34,7 @@ jobs:
       # validator inline closes that race.
       - name: Install deps and validate feed
         run: |
-          npm install --no-save
+          npm ci
           npm run validate
       - name: Prepare artifact
         run: |
