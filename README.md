@@ -17,7 +17,6 @@ https://growilabs.github.io/growi-news-feed/feed.json
 ```json
 {
   "id": "release-v7-5-0",
-  "type": "release",
   "emoji": "🚀",
   "title": {
     "ja_JP": "GROWI v7.5.0 がリリースされました"
@@ -62,7 +61,6 @@ https://growilabs.github.io/growi-news-feed/feed.json
 | フィールド | 必須 | 説明 |
 |---|---|---|
 | `id` | ✅ | 一意の識別子（変更不可） |
-| `type` | | `release` / `security` / `tips` / `maintenance` / `announcement` |
 | `emoji` | | 表示アイコン（未設定時は 📢 がフォールバック） |
 | `title` | ✅ | `{ ja_JP, en_US, ... }` 多言語オブジェクト（`ja_JP` 必須） |
 | `body` | | 多言語本文 |

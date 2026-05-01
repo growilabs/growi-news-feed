@@ -26,10 +26,6 @@
           "minLength": 1,
           "description": "Unique identifier. Used as externalId on the GROWI side."
         },
-        "type": {
-          "type": "string",
-          "enum": ["release", "security", "tips", "maintenance", "announcement"]
-        },
         "emoji": {
           "type": "string"
         },
