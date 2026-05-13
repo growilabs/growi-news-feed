@@ -5,13 +5,23 @@
 
 import fs from 'node:fs/promises';
 
+interface FeedItem {
+  id: string;
+  [key: string]: unknown;
+}
+
+interface Feed {
+  version: string;
+  items: FeedItem[];
+}
+
 const FEED_PATH = new URL('../feed.json', import.meta.url);
 
 const raw = await fs.readFile(FEED_PATH, 'utf-8');
-const feed = JSON.parse(raw);
+const feed: Feed = JSON.parse(raw);
 
-const seen = new Map();
-const duplicates = [];
+const seen = new Map<string, number>();
+const duplicates: string[] = [];
 
 for (const item of feed.items) {
   const count = (seen.get(item.id) ?? 0) + 1;
@@ -20,7 +30,9 @@ for (const item of feed.items) {
 }
 
 if (duplicates.length > 0) {
-  console.error(`Duplicate id values detected in feed.json: ${duplicates.join(', ')}`);
+  console.error(
+    `Duplicate id values detected in feed.json: ${duplicates.join(', ')}`,
+  );
   process.exit(1);
 }
 

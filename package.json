@@ -7,10 +7,13 @@
     "node": ">=24"
   },
   "scripts": {
-    "validate": "ajv validate -s schema/feed.schema.json -d feed.json -c ajv-formats --all-errors && node scripts/check-uniqueness.mjs"
+    "validate": "ajv validate -s schema/feed.schema.json -d feed.json -c ajv-formats --all-errors && node --experimental-strip-types scripts/check-uniqueness.ts",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@types/node": "^24.0.0",
     "ajv-cli": "^5.0.0",
-    "ajv-formats": "^3.0.1"
+    "ajv-formats": "^3.0.1",
+    "typescript": "^5.7.0"
   }
 }
