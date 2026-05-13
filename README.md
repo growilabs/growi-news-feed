@@ -1,6 +1,6 @@
 # growi-news-feed
 CI check
-GROWI の InAppNotification パネルに配信するニュースフィード。
+GROWI の InAppNotification パネルに配信するニュースフィード。　
 
 GROWI 各インスタンスは環境変数 `NEWS_FEED_URL` で以下の URL を参照し、cron で定期取得する:
 
