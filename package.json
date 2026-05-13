@@ -7,12 +7,10 @@
     "node": ">=24"
   },
   "scripts": {
-    "validate": "ajv validate -s schema/feed.schema.json -d feed.json -c ajv-formats --all-errors && node scripts/check-uniqueness.mjs",
-    "translate": "node scripts/translate.mjs"
+    "validate": "ajv validate -s schema/feed.schema.json -d feed.json -c ajv-formats --all-errors && node scripts/check-uniqueness.mjs"
   },
   "devDependencies": {
     "ajv-cli": "^5.0.0",
-    "ajv-formats": "^3.0.1",
-    "openai": "^4.67.0"
+    "ajv-formats": "^3.0.1"
   }
 }
