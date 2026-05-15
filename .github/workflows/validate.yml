@@ -1,0 +1,27 @@
+name: Validate feed.json
+
+on:
+  pull_request:
+    paths:
+      - 'feed.json'
+      - 'schema/**'
+      - 'package.json'
+      - '.github/workflows/validate.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'feed.json'
+      - 'schema/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install dependencies
+        run: npm ci
+      - name: Validate feed.json against schema
+        run: npm run validate
