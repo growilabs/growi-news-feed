@@ -5,7 +5,7 @@
       "id": "first-news",
       "emoji": "🎉",
       "title": {
-        "ja_JP": "【お知らせ】GROWI に「ニュース」機能が追加されました",
+        "ja_JP": "【お知らせ】GROWI に「ニュース」機能が追加されました🎉",
         "en_US": "The News feature has been added to GROWI",
         "zh_CN": "GROWI 新增了「新闻」功能",
         "fr_FR": "Une fonctionnalité « Actualités » a été ajoutée à GROWI",
@@ -18,7 +18,7 @@
         "fr_FR": "Nous avons lancé la fonctionnalité « Actualités » qui diffuse les annonces de l'équipe GROWI. Les mises à jour sont disponibles à tout moment depuis le panneau de notifications dans la barre latérale.",
         "ko_KR": "GROWI 운영팀의 공지를 전달하는 \"뉴스\" 기능을 추가했습니다. 사이드바의 알림 패널에서 언제든지 확인하실 수 있습니다."
       },
-      "url": "https://docs.growi.org/ja/admin-guide/management-cookbook/news.html",
+      "url": "https://docs.growi.org/ja/admin-guide/management-cookbook/news.html#%E9%85%8D%E4%BF%A1%E3%81%95%E3%82%8C%E3%82%8B%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%81%AE%E7%A8%AE%E9%A1%9E",
       "publishedAt": "2026-06-01T00:00:00Z"
     }
   ]
