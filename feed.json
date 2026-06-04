@@ -1,4 +1,25 @@
 {
   "version": "1.0",
-  "items": []
+  "items": [
+    {
+      "id": "first-news",
+      "emoji": "🎉",
+      "title": {
+        "ja_JP": "【お知らせ】GROWI に「ニュース」機能が追加されました🎉",
+        "en_US": "The News feature has been added to GROWI",
+        "zh_CN": "GROWI 新增了「新闻」功能",
+        "fr_FR": "Une fonctionnalité « Actualités » a été ajoutée à GROWI",
+        "ko_KR": "GROWI에 \"뉴스\" 기능이 추가되었습니다"
+      },
+      "body": {
+        "ja_JP": "GROWI 運営からのお知らせをお届けする「ニュース」機能を追加しました。サイドバーの通知パネルから随時受け取れます。",
+        "en_US": "We've launched the News feature, which delivers announcements from the GROWI team. Updates are available anytime from the notification panel in the sidebar.",
+        "zh_CN": "我们推出了「新闻」功能,可将来自 GROWI 团队的公告直接发送至您的通知面板。请随时通过侧边栏查看。",
+        "fr_FR": "Nous avons lancé la fonctionnalité « Actualités » qui diffuse les annonces de l'équipe GROWI. Les mises à jour sont disponibles à tout moment depuis le panneau de notifications dans la barre latérale.",
+        "ko_KR": "GROWI 운영팀의 공지를 전달하는 \"뉴스\" 기능을 추가했습니다. 사이드바의 알림 패널에서 언제든지 확인하실 수 있습니다."
+      },
+      "url": "https://docs.growi.org/ja/admin-guide/management-cookbook/news.html",
+      "publishedAt": "2026-06-01T00:00:00Z"
+    }
+  ]
 }
