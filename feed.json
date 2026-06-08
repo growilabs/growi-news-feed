@@ -20,6 +20,26 @@
       },
       "url": "https://docs.growi.org/ja/admin-guide/management-cookbook/news.html",
       "publishedAt": "2026-06-01T00:00:00Z"
+    },
+    {
+      "id": "20260609-growicloud-campaign",
+      "emoji": "🎉",
+      "title": {
+        "ja_JP": "【期間限定】特別割引キャンペーン実施中",
+        "en_US": "Limited-Time Special Discount Campaign",
+        "zh_CN": "【限时优惠】特别折扣活动进行中",
+        "fr_FR": "Campagne de remise spéciale à durée limitée",
+        "ko_KR": "【기간 한정】특별 할인 캠페인 실시 중"
+      },
+      "body": {
+        "ja_JP": "2026年6月1日〜6月30日の期間限定で特別割引キャンペーンを実施しています。GROWI.cloud・GROWIオンプレサービスへの移行をご検討中の方はぜひご覧ください。",
+        "en_US": "We are running a limited-time special discount campaign from June 1 to June 30, 2026. If you are considering migrating to GROWI.cloud or GROWI On-Premises Service, please check it out.",
+        "zh_CN": "我们正在举办2026年6月1日至6月30日的限时特别折扣活动。正在考虑迁移到GROWI.cloud或GROWI本地服务的用户，欢迎了解详情。",
+        "fr_FR": "Nous organisons une campagne de remise spéciale à durée limitée du 1er au 30 juin 2026. Si vous envisagez de migrer vers GROWI.cloud ou le service GROWI On-Premises, n'hésitez pas à consulter les détails.",
+        "ko_KR": "2026년 6월 1일부터 6월 30일까지 기간 한정 특별 할인 캠페인을 실시하고 있습니다. GROWI.cloud 또는 GROWI 온프레미스 서비스로의 이전을 검토 중이신 분들은 꼭 확인해 보세요."
+      },
+      "url": "https://prtimes.jp/main/html/rd/p/000000011.000144438.html",
+      "publishedAt": "2026-06-09T00:00:00Z"
     }
-  ]
+  ] 
 }
