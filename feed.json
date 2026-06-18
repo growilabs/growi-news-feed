@@ -20,6 +20,25 @@
       },
       "url": "https://docs.growi.org/ja/admin-guide/management-cookbook/news.html",
       "publishedAt": "2026-06-01T00:00:00Z"
+    },
+    {
+      "id": "test-skill-check-20260618",
+      "emoji": "🧪",
+      "title": {
+        "ja_JP": "【テスト】PrimaVista 入稿スキルの動作確認",
+        "en_US": "[Test] PrimaVista news submission skill check",
+        "zh_CN": "【测试】PrimaVista 投稿技能运行确认",
+        "fr_FR": "[Test] Vérification du skill de publication PrimaVista",
+        "ko_KR": "[테스트] PrimaVista 게시 스킬 동작 확인"
+      },
+      "body": {
+        "ja_JP": "これは PrimaVista の gnf-add-news スキルの動作確認用テスト投稿です。マージせず取り下げます。",
+        "en_US": "This is a test entry to verify PrimaVista's gnf-add-news skill. It will be withdrawn without merging.",
+        "zh_CN": "这是用于验证 PrimaVista gnf-add-news 技能的测试条目，将不会合并并予以撤回。",
+        "fr_FR": "Ceci est une entrée de test pour vérifier le skill gnf-add-news de PrimaVista. Elle sera retirée sans être fusionnée.",
+        "ko_KR": "PrimaVista의 gnf-add-news 스킬을 확인하기 위한 테스트 항목입니다. 병합하지 않고 철회됩니다."
+      },
+      "publishedAt": "2026-06-18T00:00:00Z"
     }
   ]
 }
