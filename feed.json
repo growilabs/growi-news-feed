@@ -24,11 +24,11 @@
     {
       "id": "20260708-feature-hearing",
       "title": {
-      "ja_JP": "GROWI.cloud に関するご意見・ご要望をお聞かせください",
-      "en_US": "Share Your Feedback and Requests About GROWI.cloud",
-      "zh_CN": "欢迎提出您对 GROWI.cloud 的意见和建议",
-      "fr_FR": "Partagez vos avis et suggestions concernant GROWI.cloud",
-      "ko_KR": "GROWI.cloud에 대한 의견과 요청을 들려주세요"
+      "ja_JP": "機能要望・カスタム開発のご相談受付中",
+      "en_US": "Now Accepting Feature Requests and Custom Development Inquiries",
+      "zh_CN": "功能需求及定制开发咨询受理中",
+      "fr_FR": "Demandes de fonctionnalités et développement personnalisé : consultations ouvertes",
+      "ko_KR": "기능 요청·맞춤 개발 상담 접수 중"
       },
       "body": {
         "ja_JP": "GROWIをご利用いただく中で「こんな機能があればいいのに」と感じていることはありませんか？ぜひご意見をお聞かせください。いただいたご要望の中で実現可能なものは、有償カスタム機能開発としてご提案し、優先的に開発いたします。開発された機能はOSS版のGROWIに取り込まれ、全ユーザーが活用できる形になります。",
