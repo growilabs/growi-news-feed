@@ -20,6 +20,25 @@
       },
       "url": "https://docs.growi.org/ja/admin-guide/management-cookbook/news.html",
       "publishedAt": "2026-06-01T00:00:00Z"
+    },
+    {
+      "id": "20260708-feature-hearing",
+      "title": {
+      "ja_JP": "機能要望・カスタム開発のご相談受付中",
+      "en_US": "Now Accepting Feature Requests and Custom Development Inquiries",
+      "zh_CN": "功能需求及定制开发咨询受理中",
+      "fr_FR": "Demandes de fonctionnalités et développement personnalisé : consultations ouvertes",
+      "ko_KR": "기능 요청·맞춤 개발 상담 접수 중"
+      },
+      "body": {
+        "ja_JP": "GROWIをご利用いただく中で「こんな機能があればいいのに」と感じていることはありませんか？ぜひご意見をお聞かせください。いただいたご要望の中で実現可能なものは、有償カスタム機能開発としてご提案し、優先的に開発いたします。開発された機能はOSS版のGROWIに取り込まれ、全ユーザーが活用できる形になります。",
+        "en_US": "Do you have any features you wish GROWI had? We'd love to hear your thoughts. Feasible requests will be proposed as paid custom development and prioritized for implementation. Developed features will be merged into the OSS version of GROWI, making them available to all users.",
+        "zh_CN": "在使用GROWI的过程中，您是否有「如果有这个功能就好了」的想法？欢迎告诉我们。对于可实现的需求，我们将以有偿定制开发的形式进行提案，并优先开发。开发完成的功能将合并到OSS版GROWI中，所有用户均可使用。",
+        "fr_FR": "Avez-vous des fonctionnalités que vous aimeriez voir dans GROWI ? Nous serions ravis d'entendre vos idées. Les demandes réalisables seront proposées en développement personnalisé payant et traitées en priorité. Les fonctionnalités développées seront intégrées à la version OSS de GROWI et disponibles pour tous les utilisateurs.",
+        "ko_KR": "GROWI를 사용하면서 「이런 기능이 있으면 좋겠다」고 느낀 적이 있으신가요? 여러분의 의견을 들려주세요. 실현 가능한 요청은 유상 커스텀 기능 개발로 제안하여 우선적으로 개발합니다. 개발된 기능은 OSS 버전의 GROWI에 반영되어 모든 사용자가 활용할 수 있게 됩니다."
+      },
+      "url": "https://info.growi.cloud/customfeatures",
+      "publishedAt": "2026-07-09T00:00:00Z"
     }
-  ]
+  ] 
 }
