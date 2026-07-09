@@ -39,6 +39,25 @@
       },
       "url": "https://info.growi.cloud/customfeatures",
       "publishedAt": "2026-07-09T00:00:00Z"
+    },
+    {
+      "id": "feature-update-2026-07",
+      "emoji": "✨",
+      "title": {
+        "ja_JP": "【新機能】コントリビューショングラフ・コメントのメンション通知・一括エクスポートの刷新",
+        "en_US": "New features: profile Contribution Graph, comment mention notifications, and a revamped bulk export",
+        "zh_CN": "新功能：个人资料贡献图、评论提及通知、批量导出全面革新",
+        "fr_FR": "Nouveautés : graphique de contributions sur le profil, notifications de mention en commentaire et export groupé repensé",
+        "ko_KR": "새 기능: 프로필 기여 그래프, 댓글 멘션 알림, 일괄 내보내기 개편"
+      },
+      "body": {
+        "ja_JP": "最近追加された 3 つの新機能をお知らせします。\n・プロフィールのコントリビューショングラフ：ページやコメントなどの活動量を 1 年分のヒートマップで可視化します。\n・コメントのメンション通知：コメントで @ユーザー名 を入力するとメンションでき、対象ユーザーにインアプリ通知が届きます（青色ハイライト・入力補完つき）。\n・一括エクスポートの刷新：PDF/HTML の一括エクスポートが Web 表示と同等のレンダリングに対応し、テーブル・数式・絵文字・ディレクティブなどが正しく出力されます。",
+        "en_US": "Here are three features we've added recently.\n• Contribution Graph on your profile: visualizes a year of your activity (pages, comments, and more) as a heatmap.\n• Comment mention notifications: type @username in a comment to mention someone and send them an in-app notification, with blue highlighting and autocomplete.\n• Revamped bulk export: PDF/HTML bulk export now renders Markdown just like the web view, so tables, math, emoji, and directives all come out correctly.",
+        "zh_CN": "为您介绍最近新增的三项功能。\n• 个人资料贡献图：以热力图形式可视化您一年内的活动量（页面、评论等）。\n• 评论提及通知：在评论中输入 @用户名 即可提及对方，并向其发送应用内通知，支持蓝色高亮与输入自动补全。\n• 批量导出革新：PDF/HTML 批量导出现已支持与网页显示一致的渲染，表格、公式、表情符号、指令等均可正确输出。",
+        "fr_FR": "Voici trois fonctionnalités récemment ajoutées.\n• Graphique de contributions sur votre profil : visualise une année d'activité (pages, commentaires, etc.) sous forme de carte de chaleur.\n• Notifications de mention en commentaire : saisissez @nomdutilisateur dans un commentaire pour mentionner quelqu'un et lui envoyer une notification in-app, avec surlignage bleu et autocomplétion.\n• Export groupé repensé : l'export groupé PDF/HTML rend désormais le Markdown comme l'affichage web ; tableaux, formules, emojis et directives s'affichent correctement.",
+        "ko_KR": "최근 추가된 세 가지 기능을 안내합니다.\n• 프로필 기여 그래프: 페이지·댓글 등 활동량을 1년치 히트맵으로 시각화합니다.\n• 댓글 멘션 알림: 댓글에서 @사용자명 을 입력해 멘션하면 해당 사용자에게 인앱 알림이 전송됩니다(파란색 하이라이트·입력 자동완성 지원).\n• 일괄 내보내기 개편: PDF/HTML 일괄 내보내기가 웹 표시와 동일한 렌더링을 지원하여 표·수식·이모지·디렉티브 등이 올바르게 출력됩니다."
+      },
+      "publishedAt": "2026-07-09T00:00:00Z"
     }
-  ] 
+  ]
 }
