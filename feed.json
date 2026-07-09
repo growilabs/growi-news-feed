@@ -39,6 +39,26 @@
       },
       "url": "https://info.growi.cloud/customfeatures",
       "publishedAt": "2026-07-09T00:00:00Z"
+    },
+    {
+      "id": "20260710-feature-ideas-vote",
+      "emoji": "🗳️",
+      "title": {
+        "ja_JP": "GROWI新機能アイデアリストに投票をお待ちしています",
+        "en_US": "We'd Love Your Votes on GROWI's Feature Ideas",
+        "zh_CN": "期待您为 GROWI 新功能创意投票",
+        "fr_FR": "Nous attendons vos votes sur les idées de fonctionnalités de GROWI",
+        "ko_KR": "GROWI 신기능 아이디어에 대한 투표를 기다립니다"
+      },
+      "body": {
+        "ja_JP": "開発チームで「GROWI にあったら嬉しい機能」をブレインストーミングし、GitHub Discussion にてアイディア一覧を公開中です。気になる機能をアップボート（⬆️）して、今後の開発の方向性づくりにご参加ください。",
+        "en_US": "Our development team brainstormed features we'd love to see in GROWI and published the full list of ideas on GitHub Discussions. Upvote (⬆️) the features that interest you and help shape the future direction of GROWI's development.",
+        "zh_CN": "开发团队集思广益，列出了「GROWI 中值得拥有的功能」，并在 GitHub Discussions 上公开了创意一览。请为感兴趣的功能点赞（⬆️），一起参与决定 GROWI 未来的开发方向。",
+        "fr_FR": "Notre équipe de développement a imaginé les fonctionnalités qu'elle aimerait voir dans GROWI et a publié la liste complète des idées sur GitHub Discussions. Votez (⬆️) pour les fonctionnalités qui vous intéressent et participez à définir l'orientation future du développement de GROWI.",
+        "ko_KR": "개발팀이 「GROWI에 있으면 좋을 기능」을 브레인스토밍하여 GitHub Discussions에 아이디어 목록을 공개 중입니다. 관심 있는 기능에 업보트(⬆️)하여 GROWI의 향후 개발 방향 결정에 참여해 주세요."
+      },
+      "url": "https://github.com/growilabs/growi/discussions/11165",
+      "publishedAt": "2026-07-10T00:00:00Z"
     }
-  ] 
+  ]
 }
