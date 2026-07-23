@@ -59,6 +59,28 @@
       },
       "url": "https://github.com/growilabs/growi/discussions/11165",
       "publishedAt": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "release-v8-0-highlights",
+      "emoji": "🚀",
+      "title": {
+        "ja_JP": "GROWI 8.0 の新機能：GROWI Vault・GROWI AI Agent・エディタガイド",
+        "en_US": "New in GROWI 8.0: GROWI Vault, GROWI AI Agent, and the Editor guide",
+        "zh_CN": "GROWI 8.0 新功能：GROWI Vault、GROWI AI Agent 与编辑器指南",
+        "fr_FR": "Nouveautés de GROWI 8.0 : GROWI Vault, GROWI AI Agent et le guide de l'éditeur",
+        "ko_KR": "GROWI 8.0의 새로운 기능: GROWI Vault, GROWI AI Agent, 에디터 가이드"
+      },
+      "body": {
+        "ja_JP": "GROWI 8.0 で追加された主な新機能をご紹介します。\n・GROWI Vault：閲覧権限のあるページを Markdown ファイルのツリーとして `git clone` できる、読み取り専用の Git インターフェースです。\n・GROWI AI Agent：AI チャットが複数の AI プロバイダ（OpenAI / Anthropic / Google / Azure OpenAI）に対応し、プロバイダをまたいでモデルを選択できるようになりました。\n・エディタガイド：エディタの使い方をその場で確認できる案内を追加しました。",
+        "en_US": "Here are the highlights of what's new in GROWI 8.0.\n• GROWI Vault: a read-only Git interface that lets you `git clone` the pages you're allowed to see as a tree of Markdown files.\n• GROWI AI Agent: AI chat now supports multiple providers (OpenAI, Anthropic, Google, Azure OpenAI) and lets you pick models across providers.\n• Editor guide: a built-in guide that helps you learn the editor right where you write.",
+        "zh_CN": "为您介绍 GROWI 8.0 的主要新功能。\n• GROWI Vault：只读的 Git 接口，可将您有权查看的页面以 Markdown 文件树的形式 `git clone` 到本地。\n• GROWI AI Agent：AI 聊天现已支持多个提供商（OpenAI、Anthropic、Google、Azure OpenAI），并可跨提供商选择模型。\n• 编辑器指南：新增内置指南，让您在编写时即可了解编辑器的用法。",
+        "fr_FR": "Voici les principales nouveautés de GROWI 8.0.\n• GROWI Vault : une interface Git en lecture seule qui vous permet de faire un `git clone` des pages auxquelles vous avez accès sous forme d'arborescence de fichiers Markdown.\n• GROWI AI Agent : le chat IA prend désormais en charge plusieurs fournisseurs (OpenAI, Anthropic, Google, Azure OpenAI) et permet de choisir des modèles d'un fournisseur à l'autre.\n• Guide de l'éditeur : un guide intégré qui vous aide à prendre en main l'éditeur directement pendant la rédaction.",
+        "ko_KR": "GROWI 8.0에 추가된 주요 새 기능을 안내합니다.\n• GROWI Vault: 열람 권한이 있는 페이지를 Markdown 파일 트리로 `git clone`할 수 있는 읽기 전용 Git 인터페이스입니다.\n• GROWI AI Agent: AI 채팅이 여러 제공업체(OpenAI, Anthropic, Google, Azure OpenAI)를 지원하며, 제공업체를 넘나들며 모델을 선택할 수 있게 되었습니다.\n• 에디터 가이드: 글을 작성하는 자리에서 바로 에디터 사용법을 익힐 수 있는 내장 가이드를 추가했습니다."
+      },
+      "conditions": {
+        "growiVersionRegExps": ["^8\\..*"]
+      },
+      "publishedAt": "2026-08-01T00:00:00Z"
     }
   ]
 }
