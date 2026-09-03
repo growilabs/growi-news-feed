@@ -6,6 +6,7 @@ on:
     paths:
       - 'feed.json'
       - 'schema/**'
+      - 'images/**' 
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -41,6 +42,7 @@ jobs:
           mkdir -p _site
           cp feed.json _site/
           cp -r schema _site/
+          cp -r images _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
