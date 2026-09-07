@@ -1,0 +1,73 @@
+name: Maintain feed size
+
+# Bound feed.json to a maximum item count so the receiving GROWI instances' DB
+# footprint stays bounded (they upsert every item that remains in the feed).
+# Runs on a schedule and can be triggered manually.
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' # monthly, 1st of the month at 00:00 UTC
+  workflow_dispatch:
+    inputs:
+      max_items:
+        description: 'Maximum number of items to keep (newest by publishedAt)'
+        required: false
+        default: '100'
+
+permissions:
+  contents: write # commit/push the trimmed feed to main
+  actions: write # dispatch pages.yml (GITHUB_TOKEN pushes do not retrigger it)
+
+# Prevent overlapping trim runs from racing on main.
+concurrency:
+  group: maintain-feed-size
+  cancel-in-progress: false
+
+jobs:
+  trim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Default GITHUB_TOKEN can push to the same repo. Full history so a
+          # rebase before push can resolve against concurrent human commits.
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install dependencies
+        run: npm ci
+      - name: Trim feed to the item-count budget
+        id: trim
+        env:
+          FEED_MAX_ITEMS: ${{ github.event.inputs.max_items || '100' }}
+        run: node --experimental-strip-types scripts/trim-feed.ts
+      - name: Validate the trimmed feed
+        if: steps.trim.outputs.changed == 'true'
+        run: npm run validate
+      - name: Commit and push to main
+        if: steps.trim.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A feed.json images
+          git commit -m "chore: trim feed to size budget" \
+            -m "Removed ids: ${{ steps.trim.outputs.removed_ids }}" \
+            -m "Removed images: ${{ steps.trim.outputs.removed_images }}"
+          # Rebase onto any concurrent human commit before pushing; abort rather
+          # than clobber if it cannot be resolved cleanly.
+          for i in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((2 ** i))
+          done
+          echo "::error::Failed to push trimmed feed to main after retries" >&2
+          exit 1
+      - name: Trigger Pages deploy
+        # A GITHUB_TOKEN push does not retrigger pages.yml, so dispatch it explicitly.
+        if: steps.trim.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run pages.yml --ref main

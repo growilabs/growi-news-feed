@@ -47,7 +47,19 @@ npm ci          # 初回のみ（ajv-cli 等を取得。node_modules は gitigno
 npm run validate
 ```
 
-`npm run validate` は ajv によるスキーマ検証と `scripts/check-uniqueness.ts` の `id` 一意性チェックを通す。**ここが通らないものは push しない**。
+`npm run validate` は次を通す。**ここが通らないものは push しない**。
+
+- ajv によるスキーマ検証
+- `scripts/check-uniqueness.ts`: `id` の一意性
+- `scripts/check-images.ts`: `bodyFormat: "markdown"` の本文が参照する `images/…` の実在・命名・`images/` 直下・拡張子
+- `scripts/check-size.ts`: `feed.json` のバイトサイズ上限（受信側 5 MiB 制限より手前で fail）
+
+## フィードサイズの自動メンテナンス
+
+`maintain-feed-size.yml` が定期実行で `feed.json` を保持上限（既定 100 件）に収まるよう `publishedAt` の古い順に自動削除し、孤立画像も消して main へ直接反映する。受信側の DB 使用量がフィードのキュレーションに依存するための責務（詳細は README「フィードサイズの自動メンテナンス」）。
+
+- 古いエントリは**予告なく消えうる**ので、恒久的に残したい告知の前提で運用しない。
+- 削除された `id` を**再追加しない**（マージ後の `id` 変更と同じく既読状態がリセットされる）。
 
 ## push 戦略と人間承認
 
