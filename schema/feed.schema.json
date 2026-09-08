@@ -45,6 +45,11 @@
           },
           "additionalProperties": false
         },
+        "bodyFormat": {
+          "type": "string",
+          "enum": ["markdown"],
+          "description": "Opt-in gate for Markdown rendering of `body` on GROWI's /_news page. Omit for plain text. Item-wide: applies to every locale."
+        },
         "url": {
           "type": "string",
           "format": "uri"
