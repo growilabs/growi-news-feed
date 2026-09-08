@@ -122,7 +122,7 @@ push 後の自動処理:
 
 | Workflow | Trigger | 役割 |
 |---|---|---|
-| `validate.yml` | PR / push to main（`feed.json` / `schema/**` / `package.json` 変更時） | schema + 一意性 + 画像整合 + サイズを検証 |
+| `validate.yml` | PR / push to main（`feed.json` / `schema/**` / `images/**` / `scripts/**` / `package.json` 変更時） | schema + 一意性 + 画像整合 + サイズを検証 |
 | `pages.yml` | push to `main`（`feed.json` / `schema/**` / `images/**` 変更時）・手動 | `feed.json` / `schema/` / `images/` を GitHub Pages にデプロイ（デプロイ前にインライン validate） |
 | `refresh-lock.yml` | 手動（`workflow_dispatch`） | `package.json` 変更後に `package-lock.json` を再生成 |
 | `maintain-feed-size.yml` | 定期（既定: 毎月）・手動 | 保持上限超過分の古いエントリ・孤立画像を自動削除し main へ反映 |
