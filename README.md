@@ -113,7 +113,7 @@ push 後の自動処理:
 この責務を自動化するのが `maintain-feed-size.yml`:
 
 - 定期実行（既定: 毎月）。`feed.json` の件数が保持上限（`FEED_MAX_ITEMS`、既定 **100**）を超えたら、`publishedAt` が古い順に超過分を削除し、どのエントリからも参照されなくなった `images/` の孤立画像も削除する（`scripts/trim-feed.ts`）。
-- 削除後に `npm run validate` を通してから main へ直接 commit / push し、`pages.yml` を明示的に起動して Pages を再デプロイする。
+- 削除後に `npm run validate` を通し、**PR を作成して squash マージ**（自動）してから、`pages.yml` を明示的に起動して Pages を再デプロイする。差分が PR として残るため、後から確認・revert しやすい。
 - commit メッセージに削除した `id` を列挙する（監査は git 履歴に残る）。
 
 > **注意**: 削除は取り込み済み全インスタンスの DB からもそのアイテムを消す（`deleteItemsNotInFeed`）。`id` はマージ後不変で、削除済み `id` を再追加すると既読状態がリセットされるため、**保持上限を十分大きく取り、削除したエントリは再追加しない**。

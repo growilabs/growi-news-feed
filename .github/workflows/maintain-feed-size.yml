@@ -15,7 +15,8 @@ on:
         default: '100'
 
 permissions:
-  contents: write # commit/push the trimmed feed to main
+  contents: write # push the maintenance branch and merge the PR
+  pull-requests: write # open the maintenance PR
   actions: write # dispatch pages.yml (GITHUB_TOKEN pushes do not retrigger it)
 
 # Prevent overlapping trim runs from racing on main.
@@ -46,25 +47,34 @@ jobs:
       - name: Validate the trimmed feed
         if: steps.trim.outputs.changed == 'true'
         run: npm run validate
-      - name: Commit and push to main
+      - name: Open a PR and merge it
         if: steps.trim.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAX_ITEMS: ${{ github.event.inputs.max_items || '100' }}
         run: |
+          BRANCH="chore/trim-feed-$(date -u +%Y%m%d-%H%M%S)"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
           git add -A feed.json images
           git commit -m "chore: trim feed to size budget" \
             -m "Removed ids: ${{ steps.trim.outputs.removed_ids }}" \
             -m "Removed images: ${{ steps.trim.outputs.removed_images }}"
-          # Rebase onto any concurrent human commit before pushing; abort rather
-          # than clobber if it cannot be resolved cleanly.
-          for i in 1 2 3; do
-            if git pull --rebase origin main && git push origin HEAD:main; then
-              exit 0
-            fi
-            sleep $((2 ** i))
-          done
-          echo "::error::Failed to push trimmed feed to main after retries" >&2
-          exit 1
+          git push -u origin "$BRANCH"
+          {
+            echo "Automated feed-size maintenance: keep the newest ${MAX_ITEMS} items by publishedAt."
+            echo
+            echo "Removed ids: ${{ steps.trim.outputs.removed_ids }}"
+            echo "Removed images: ${{ steps.trim.outputs.removed_images }}"
+          } > pr-body.txt
+          gh pr create --base main --head "$BRANCH" \
+            --title "chore: trim feed to size budget" --body-file pr-body.txt
+          # main has no branch protection, so there are no required checks to wait on;
+          # the inline validate above already gated this. Merge now (squash) so the
+          # Pages redeploy below runs against the merged result. If required checks are
+          # later added on main, switch this to `--auto` to wait for them.
+          gh pr merge "$BRANCH" --squash --delete-branch
       - name: Trigger Pages deploy
         # A GITHUB_TOKEN push does not retrigger pages.yml, so dispatch it explicitly.
         if: steps.trim.outputs.changed == 'true'
