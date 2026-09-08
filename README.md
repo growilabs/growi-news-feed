@@ -32,7 +32,7 @@ https://growilabs.github.io/growi-news-feed/feed.json
 
 **現状**: `feed.json` を**手動で編集**して push（または PR）する単純運用。入稿規約の詳細は [CLAUDE.md](CLAUDE.md) を参照。
 
-> **TODO**: 将来は専用 Claude Code スキル(PrimaVista)からの対話入稿を予定 → [TODO: Claude Code Skill 経由の入稿](#todo-claude-code-skill-経由の入稿)
+> **入稿スキルあり**: 対話的な入稿は専用の Claude Code スキル **PrimaVista（`gnf-add-news`）** でも行える → [Claude Code スキル(PrimaVista) 経由の入稿](#claude-code-スキルprimavista-経由の入稿)
 
 ### 1. `feed.json` の `items` に新規エントリを追加して push（または PR）
 
@@ -127,29 +127,31 @@ push 後の自動処理:
 | `refresh-lock.yml` | 手動（`workflow_dispatch`） | `package.json` 変更後に `package-lock.json` を再生成 |
 | `maintain-feed-size.yml` | 定期（既定: 毎月）・手動 | 保持上限超過分の古いエントリ・孤立画像を自動削除し main へ反映 |
 
-## TODO: Claude Code スキル(PrimaVista) 経由の入稿
+## Claude Code スキル(PrimaVista) 経由の入稿
 
-将来、対話的にニュースを生成・入稿できる専用 Claude Code スキルを導入予定。
+`feed.json` への入稿は、専用の Claude Code スキル **PrimaVista（`gnf-add-news`）** で対話的に行える。スキル本体は別リポジトリで管理される。
 
-### 想定運用フロー
+> リポジトリ: <!-- TODO: PrimaVista リポジトリのリンクをここに記載 -->（別途共有）
 
-1. 運営者が Claude Code スキルを起動し、ニュース内容を日本語で指示
+### 運用フロー
+
+1. 運営者が PrimaVista（`gnf-add-news`）を起動し、ニュース内容を日本語で指示
 2. スキルが多言語（`ja_JP`, `en_US`, `zh_CN`, `fr_FR`, `ko_KR`）の文面を一括生成
 3. 運営者がプレビューで全文確認 → 明示承認
-4. スキルが `gh` CLI 経由で `feed.json` を編集して push（または PR 作成）
-5. 既存の `validate.yml` / `pages.yml` がそのまま機能
+4. スキルが `gh` CLI 経由で `feed.json` を編集し PR を作成（無承認 push はしない）
+5. `validate.yml` が検証、レビューを経て main マージ → `pages.yml` がデプロイ
 
-### 着手時に追加で必要なもの
+### このリポジトリが提供する「入稿契約」
 
-| 区分 | 内容 |
+PrimaVista は本リポの以下を参照・遵守する（スキル側の実装はこれらに従う）。入稿規約の詳細は [CLAUDE.md](CLAUDE.md) が原典。
+
+| 提供物 | 役割 |
 |---|---|
-| **本リポ側** | `CLAUDE.md`（スキルが読む規約集）、`types/feed.ts`（型定義）、`schema/feed.schema.json` のパターン強化（id naming、文字数上限、url ドメイン）、`examples/` |
-| **追加 validator** | 命名規約 / ロケール網羅性 / 日付妥当性 / コンテンツ検査 |
-| **スキル側**（別リポ） | `SKILL.md`（対話フロー）、多言語生成プロンプト、既存 feed の取得・id 衝突回避、`gh` 操作、dry-run validate |
-| **環境** | gh CLI 認証（repo write）、LLM API キー、Node 24 |
-| **運用ルール** | 入稿前の人間承認、種別ごとの push 戦略、id 衝突回避、失敗時ロールバック手順 |
+| `CLAUDE.md` | 入稿規約の原典。id 不変・多言語・`bodyFormat`/画像規約・自動 trim ライフサイクル等、スキルが従うルール |
+| `schema/feed.schema.json` | エントリの構造契約（ajv 検証で担保） |
+| `npm run validate`（`check-uniqueness` / `check-images` / `check-size`） | スキルが push 前に通す dry-run 検証 |
 
-着手順序の推奨: **`CLAUDE.md` ドラフト → schema 強化 → 追加 validator → スキル本体**
+> スキル側（別リポ）が持つもの: `SKILL.md`（対話フロー）、多言語生成プロンプト、既存 feed の取得・`id` 衝突回避、`gh` 操作、dry-run validate の呼び出し。
 
 ## 共同編集・運用時の注意点
 
