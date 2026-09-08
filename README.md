@@ -129,9 +129,9 @@ push 後の自動処理:
 
 ## Claude Code スキル(PrimaVista) 経由の入稿
 
-`feed.json` への入稿は、専用の Claude Code スキル **PrimaVista（`gnf-add-news`）** で対話的に行える。スキル本体は別リポジトリで管理される。
+`feed.json` の入稿・更新・削除は、専用の Claude Code スキル群 **PrimaVista** で対話的に行える。ニュース追加は `gnf-add-news`、ほかに更新用（`gnf-update-*`）・削除用（`gnf-delete-*`）のスキルがある。
 
-> リポジトリ: <!-- TODO: PrimaVista リポジトリのリンクをここに記載 -->（別途共有）
+> スキル本体は別（非公開）リポジトリで管理される。URL はここには記載しない。
 
 ### 運用フロー
 
