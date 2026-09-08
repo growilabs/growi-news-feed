@@ -131,8 +131,6 @@ push 後の自動処理:
 
 `feed.json` の入稿・更新・削除は、専用の Claude Code スキル群 **PrimaVista** で対話的に行える。ニュース追加は `gnf-add-news`、更新は `gnf-update-news`、削除は `gnf-delete-news`。
 
-> スキル本体は別（非公開）リポジトリで管理される。URL はここには記載しない。
-
 ### 運用フロー
 
 1. 運営者が PrimaVista（`gnf-add-news`）を起動し、ニュース内容を日本語で指示
