@@ -1,0 +1,75 @@
+name: Maintain feed size
+
+# Bound feed.json to a maximum item count so the receiving GROWI instances' DB
+# footprint stays bounded (they upsert every item that remains in the feed).
+# Runs on a schedule and can be triggered manually.
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' # monthly, 1st of the month at 00:00 UTC
+  workflow_dispatch:
+    inputs:
+      max_items:
+        description: 'Maximum number of items to keep (newest by publishedAt)'
+        required: false
+        default: '100'
+
+permissions:
+  contents: write # push the maintenance branch
+  pull-requests: write # open the maintenance PR
+
+# Prevent overlapping trim runs from racing on main.
+concurrency:
+  group: maintain-feed-size
+  cancel-in-progress: false
+
+jobs:
+  trim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Default GITHUB_TOKEN can push the maintenance branch to the same repo.
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install dependencies
+        run: npm ci
+      - name: Trim feed to the item-count budget
+        id: trim
+        env:
+          FEED_MAX_ITEMS: ${{ github.event.inputs.max_items || '100' }}
+        run: node --experimental-strip-types scripts/trim-feed.ts
+      - name: Validate the trimmed feed
+        if: steps.trim.outputs.changed == 'true'
+        run: npm run validate
+      - name: Open a PR for an operator to merge
+        # Intentionally does NOT merge. An operator reviews and merges the PR; that
+        # human merge is a normal push to main, so pages.yml redeploys on its own.
+        # Auto-merge can be revisited once this has an operational track record.
+        if: steps.trim.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAX_ITEMS: ${{ github.event.inputs.max_items || '100' }}
+        run: |
+          BRANCH="chore/trim-feed-$(date -u +%Y%m%d-%H%M%S)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add -A feed.json images
+          git commit -m "chore: trim feed to size budget" \
+            -m "Removed ids: ${{ steps.trim.outputs.removed_ids }}" \
+            -m "Removed images: ${{ steps.trim.outputs.removed_images }}"
+          git push -u origin "$BRANCH"
+          {
+            echo "Automated feed-size maintenance: keep the newest ${MAX_ITEMS} items by publishedAt."
+            echo
+            echo "**An operator should review and merge this PR.** Merging (a push to main)"
+            echo "redeploys Pages on its own."
+            echo
+            echo "Removed ids: ${{ steps.trim.outputs.removed_ids }}"
+            echo "Removed images: ${{ steps.trim.outputs.removed_images }}"
+          } > pr-body.txt
+          gh pr create --base main --head "$BRANCH" \
+            --title "chore: trim feed to size budget" --body-file pr-body.txt

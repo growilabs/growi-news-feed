@@ -5,13 +5,21 @@ on:
     paths:
       - 'feed.json'
       - 'schema/**'
+      - 'images/**'
+      - 'scripts/**'
       - 'package.json'
+      - 'package-lock.json'
       - '.github/workflows/validate.yml'
   push:
     branches: [main]
     paths:
       - 'feed.json'
       - 'schema/**'
+      - 'images/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/validate.yml'
 
 jobs:
   validate:

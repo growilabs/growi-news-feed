@@ -7,7 +7,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "validate": "ajv validate -s schema/feed.schema.json -d feed.json -c ajv-formats --all-errors && node --experimental-strip-types scripts/check-uniqueness.ts",
+    "validate": "ajv validate -s schema/feed.schema.json -d feed.json -c ajv-formats --all-errors && node --experimental-strip-types scripts/check-uniqueness.ts && node --experimental-strip-types scripts/check-images.ts && node --experimental-strip-types scripts/check-size.ts",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
