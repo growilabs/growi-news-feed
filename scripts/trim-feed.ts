@@ -58,9 +58,11 @@ if (feed.items.length <= MAX_ITEMS) {
   process.exit(0);
 }
 
-// Rank by publishedAt descending; the newest MAX_ITEMS survive.
-const rankedNewestFirst = [...feed.items].sort((a, b) =>
-  b.publishedAt.localeCompare(a.publishedAt),
+// Rank by publishedAt descending; the newest MAX_ITEMS survive. Compare actual
+// instants (not the raw strings): the schema allows mixed timezone offsets
+// (e.g. `Z` and `+09:00`), for which lexicographic order would be wrong.
+const rankedNewestFirst = [...feed.items].sort(
+  (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
 );
 const survivorIds = new Set(rankedNewestFirst.slice(0, MAX_ITEMS).map((i) => i.id));
 

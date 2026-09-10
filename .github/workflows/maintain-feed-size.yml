@@ -15,9 +15,8 @@ on:
         default: '100'
 
 permissions:
-  contents: write # push the maintenance branch and merge the PR
+  contents: write # push the maintenance branch
   pull-requests: write # open the maintenance PR
-  actions: write # dispatch pages.yml (GITHUB_TOKEN pushes do not retrigger it)
 
 # Prevent overlapping trim runs from racing on main.
 concurrency:
@@ -30,10 +29,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Default GITHUB_TOKEN can push to the same repo. Full history so a
-          # rebase before push can resolve against concurrent human commits.
+          # Default GITHUB_TOKEN can push the maintenance branch to the same repo.
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -47,7 +44,10 @@ jobs:
       - name: Validate the trimmed feed
         if: steps.trim.outputs.changed == 'true'
         run: npm run validate
-      - name: Open a PR and merge it
+      - name: Open a PR for an operator to merge
+        # Intentionally does NOT merge. An operator reviews and merges the PR; that
+        # human merge is a normal push to main, so pages.yml redeploys on its own.
+        # Auto-merge can be revisited once this has an operational track record.
         if: steps.trim.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -65,19 +65,11 @@ jobs:
           {
             echo "Automated feed-size maintenance: keep the newest ${MAX_ITEMS} items by publishedAt."
             echo
+            echo "**An operator should review and merge this PR.** Merging (a push to main)"
+            echo "redeploys Pages on its own."
+            echo
             echo "Removed ids: ${{ steps.trim.outputs.removed_ids }}"
             echo "Removed images: ${{ steps.trim.outputs.removed_images }}"
           } > pr-body.txt
           gh pr create --base main --head "$BRANCH" \
             --title "chore: trim feed to size budget" --body-file pr-body.txt
-          # main has no branch protection, so there are no required checks to wait on;
-          # the inline validate above already gated this. Merge now (squash) so the
-          # Pages redeploy below runs against the merged result. If required checks are
-          # later added on main, switch this to `--auto` to wait for them.
-          gh pr merge "$BRANCH" --squash --delete-branch
-      - name: Trigger Pages deploy
-        # A GITHUB_TOKEN push does not retrigger pages.yml, so dispatch it explicitly.
-        if: steps.trim.outputs.changed == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh workflow run pages.yml --ref main
